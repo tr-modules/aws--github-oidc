@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "this" {
     actions = ["sts:AssumeRoleWithWebIdentity"]
 
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values   = var.allowed_repos
     }
