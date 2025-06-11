@@ -46,12 +46,12 @@ data "aws_iam_policy_document" "this" {
   }
 }
 
-resource "aws_iam_role" "ecs_instance_role" {
+resource "aws_iam_role" "access" {
   name               = "${var.prefix}GithubAccessReposRole"
   assume_role_policy = data.aws_iam_policy_document.this.json
 }
 
 resource "aws_iam_role_policy_attachment" "github_role_registry_policy" {
-  role       = aws_iam_role.ecs_instance_role.name
+  role       = aws_iam_role.access.name
   policy_arn = var.policy_arn
 }
